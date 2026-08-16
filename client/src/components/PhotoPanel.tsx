@@ -63,7 +63,13 @@ export function PhotoPanel({
       {/* halftone reveal - the photo is screened into an ink/paper halftone print by
           default (WebGL), and comes into sharp focus in a loupe around the cursor or
           touch point, echoing the darkroom "develop" motif and the discoverability
-          hint below far more literally than the old CSS mask ever did. */}
+          hint below far more literally than the old CSS mask ever did.
+
+          The loupe stays live while the nav is open — the strip of photo left
+          exposed beside the panel is still the visitor's to play with. It
+          needs no `collapsed` guard to behave: the nav sits above this canvas
+          and eats its own pointer events, so moving onto the panel reads as a
+          pointerleave here and the loupe fades out on its own. */}
       <HalftoneReveal
         src="/assets/colored.svg"
         inkColor="#11100b"
@@ -76,7 +82,6 @@ export function PhotoPanel({
         edge={0.72}
         follow={0.18}
         idleReveal={0}
-        paused={!collapsed}
         borderRadius="0px"
         className="!absolute inset-0"
         style={{ contain: "layout paint" }}

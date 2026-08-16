@@ -27,6 +27,19 @@ export function HomePage({ loading }: { loading: boolean }) {
   };
   const closeNav = () => setHeroExpanded(false);
 
+  // The nav is the hero's whole point, and a bare "Menu" button in the corner
+  // asks the visitor to go find it. Open it once, the moment the loading
+  // screen lifts — deferring to !loading (rather than seeding heroExpanded
+  // true) means the entrance animation plays where it can be seen instead of
+  // finishing behind the overlay. `introOpened` keeps it to that one time, so
+  // every open after this is the visitor's own doing.
+  const introOpened = useRef(false);
+  useEffect(() => {
+    if (loading || introOpened.current) return;
+    introOpened.current = true;
+    openNav();
+  }, [loading]);
+
   // The hero is the only place nav lives — surface a way back once it's
   // scrolled out of view, since there's otherwise no persistent nav.
   useEffect(() => {
