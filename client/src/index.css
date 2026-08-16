@@ -16,7 +16,12 @@
   --font-body: "Manrope", -apple-system, sans-serif;
   --font-hud: "JetBrains Mono", monospace;
 
-  --text-hero: 5rem;
+  /* Fluid. --text-hero is set in exactly one place — the nav panel's role
+     headline — and that panel is a ~45vw column, not a full-width hero. At a
+     fixed 5rem a four-word role wrapped to four lines and ate half the panel
+     before the menu itself got any. Scaling with the viewport keeps it to
+     two or three lines at every width without ever reading small. */
+  --text-hero: clamp(2.5rem, 4.4vw, 4.5rem);
   --text-hero--line-height: 0.95;
   --text-h1: 3.5rem;
   --text-h1--line-height: 1;
@@ -94,6 +99,17 @@
 }
 
 @layer utilities {
+  /* Scrollable, but without the bar — matches html's own hidden scrollbar
+     above, for panels that overflow only on short viewports and shouldn't
+     grow a scrollbar the rest of the time. */
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Photographic grain — for photo panels, dark surfaces */
   .grain {
     position: relative;
