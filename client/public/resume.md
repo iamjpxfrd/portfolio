@@ -1,85 +1,42 @@
-Darwin Darryl Jean E. Largoza
+# Darwin Darryl Jean E. Largoza
 
-Cebu, Philippines • darwindarryljean.largoza@gmail.com • +63-995-662-7081 • LinkedIn • GitHub
+Cebu, Philippines • <u>darwindarryljean.largoza@gmail.com</u> • +63-995-662-7081 • <u>LinkedIn</u> • <u>GitHub</u>
 
-PROFESSIONAL SUMMARY
+## PROFESSIONAL SUMMARY
 
-4th-year Information Technology student with hands-on experience across full-stack development (React, Node.js,
+4th-year Information Technology student and AWS-certified full-stack developer with hands-on experience building production style web applications in React, Node.js, and Django. Owns projects end-to-end, from Figma UI/UX design through frontend build and backend/API integration, in Git-based Agile teams. Proficient in JavaScript, Python, and relational/NoSQL databases (PostgreSQL, MySQL, MongoDB), with applied information security fundamentals. Seeking an internship as a Web Developer, Frontend Developer, Full-Stack Developer, or UI/UX Designer.
 
-Django), UI/UX design, and cloud architecture (AWS-certified). Proficient in JavaScript, and Git-based collaboration,
+## SKILLS
 
-with working knowledge of relational and NoSQL databases (MySQL, MongoDB) and applied information security
+**Frontend:** React (Vite), JavaScript (ES6+), TailwindCSS, Responsive/UI Development **Backend:** Node.js, Express, Django (Python), REST API Design/Integration **Databases:** PostgreSQL, MySQL, MongoDB **UI/UX & Design:** Figma (wireframing, prototyping, design systems), Canva, Gamma **Cloud & DevOps:** AWS (Cloud Architecting, Cloud Foundations), Docker, CI/CD fundamentals (in progress) **Tools & Workflows:** Git, Github, Agile/SRUM, VS Code, IntelliJ IDEA, Replit, HubSpot **AI-Assisted Development:** Claude Code, Cursor, Windsurf, Lovable – rapid prototyping, code review **Security Exposure:** Information security fundamentals, Kali Linux Basics, TryHackMe (Pre Security) **Currently Expanding:** Test Automation (Playwright), CI/CD fundamentals, Advanced AWS (Security/DevOps)
 
-fundamentals. Adaptable across tech stacks and comfortable working in Agile team environments. Seeking a technical
+## FEATURED PROJECTS
 
-internship to apply and grow these skills.
+<u>Ally – AI-Powered Legal Platform (Capstone) | Frontend/UI-UX Developer</u> _Jan 2025 – Dec 2025_
 
-SKILLS
+- Designed the complete UI/UX in Figma and shipped it as a production React (Vite) frontend, including a chat first AI legal Q&A interface.
+- Built real time lawyer-client messaging and role-based user flows on a Firebase backend, delivering a multi- user, production-style platform.
+  <u>Notes App –Hybrid Web2/Web3 Notes Platform | Full-Stack Developer</u> _Dec 2025_
 
-Web & App Frameworks: ReactJS, Node.js, Express, Django, TailwindCSS
+- Developed full-stack features in React, Node.js/Express, and MongoDB, including Cardano blockchain integration for permanent note storage.
+- Strengthened backend rate-limiter reliability and built frontend editor components as part of a 5-person team using Git-based collaboration.
+  <u>CampusXperience – Campus Event Platform | Frontend Developer</u> _May 2025 – Dec 2025_
 
-Scripting & Languages: JavaScript (Node.js), Python (Django)
+- Built the complete frontend in React (Vite) for a campus event discovery, reservation, ticketing, and reminder platform backed by Spring Boot (Java).
+- Collaborated with a 5-person team via Git/GitHub to plan, build, and ship full-stack features on schedule.
+  <u>CrediGo – System Integration Project | Full-Stack Developer</u> _Apr 2025 – May 2025_
 
-Databases: PostgreSQL, MySQL, MongoDB,
+- Independently designed and build the entire web app – frontend UI and backend API integration – for a 3- person systems integration course project.
+- Owned full-stack development end-to-end, from architecture and planning through delivery, within a compressed project timeline.
 
-Version Control & Workflow: Git, GitHub, Docker, Agile/SCRUM exposure through team project work
+## EDUCATION
 
-Design & Tools: Figma (UI/UX design), Canva, IntelliJ IDEA, VS Code, Replit, Gamma, HubSpot
+**Bachelor of Science in Information Technology** | <u>Cebu Institute of Technology – University</u> _2022-Present_
 
-AI-Assisted Development: Claude Code, Cursor, Windsurf, Lovable – for rapid prototyping, code review, and pair-
+## CERTIFICATIONS & AWARDS
 
-programming workflows
+- <u>AWS Academy Graduate – Cloud Architecting (Training Badge)</u>, Dec 2025
 
-Security Exposure: Information security fundamentals, Kali Linux Basics, TryHackMe (Pre Security)
-
-Currently Expanding: Test Automation (Playwright), CI/CD fundamentals, Advanced AWS (Security/DevOps)
-
-FEATURED PROJECTS
-
-• Ally – AI-Powered Legal Platform (Capstone): Designed the complete UI in Figma and implemented it in
-
-React (Vite) as frontend/UI-UX developer, including a chat-first interface for AI-powered legal Q&A, chat
-
-interface between the lawyer and client, and role-based flows integrated with a Firebase backend – end-to-
-
-end frontend ownership on a multi-user, production-style platform. (Jan 2025 - Dec 2025)
-
-• Notes App – (Web3 Notes Platform): Built full-stack features for a hybrid Web2/Web3 notes app (React,
-
-Node.js/Express, MongoDB) with Cardano blockchain-based permanence; improved backend rate-limiter
-
-reliability and built frontend editor components as part of a 5-person team using Git-based collaboration. (Dec
-
-2025.
-
-• CampusXperience – Campus Event Platform: Built the complete frontend, and contributed as part of 5-
-
-person team to a full-stack web app for campus event discovery, reservation, ticketing, and reminders – React
-
-(Vite), Spring Boot (Java) backend, Git/GitHub collaboration. (May 2025 – Dec 2025)
-
-• CrediGo – System Integration Project: Independently designed and built the entire web app – frontend UI
-
-and backend API integration – for a 3-person System Integration and Architecture course project, owning full-
-
-stack development end-to-end from planning through delivery. (Apr 2025 – May 2025).
-
-EDUCATION
-
-Bachelor of Science in Information Technology | Cebu Institute of Technology – University
-
-2022-Present
-
-CERTIFICATIONS & AWARDS
-
-• AWS Academy Graduate – Cloud Architecting (Training Badge) – Dec 2025
-
-• AWS Academy Graduate – Cloud Foundations (Training Badge) – Oct 2025
-
-• IBM - Lifelong Professional Skills – Jul 2026
-
-• Cebu Institute of Technology - University College - OJT Rediness Program – Jul 2026
-
-LANGUAGES
-
-English (Professional) • Filipino (Native) • Cebuano (Native)
+| •   | AWS Academy Graduate – Cloud Foundations (Training Badge), Oct 2025     |
+| --- | ----------------------------------------------------------------------- |
+|     | LANGUAGES English (Professional) • Filipino (Native) • Cebuano (Native) |

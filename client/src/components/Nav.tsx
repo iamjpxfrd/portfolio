@@ -1,14 +1,8 @@
-import {
-  Fragment,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { profile, gmailComposeUrl } from "../data/resume";
+import { profile, gmailComposeUrl, heroHook } from "../data/resume";
 import { LinkButton } from "./Button";
 import { Spinner } from "./Spinner";
 import { DecryptedText } from "./DecryptedText";
@@ -341,7 +335,24 @@ export function Nav({
       // opacity frame by frame, and a CSS transition on it would re-animate
       // toward every intermediate value the tween sets, smearing the fade.
       // Below 700px there's no GSAP at all and the transition is the fade.
-      className={`paper-grain !absolute inset-0 z-20 flex min-w-0 flex-col justify-center gap-6 overflow-y-hidden bg-paper px-6 py-10 text-ink transition-[opacity,box-shadow] split:right-0 split:left-auto split:w-[45%] split:border-l split:border-ink/10 split:px-14 split:py-12 split:transition-[box-shadow] ${
+      // The hero copy is long enough now to outgrow a laptop viewport. Plain
+      // `justify-center` + `overflow-y-hidden` would crop it silently and
+      // from both ends; `safe center` keeps the centering while it fits and
+      // falls back to flex-start the moment it doesn't, so the top never
+      // becomes unreachable, and the panel scrolls instead of swallowing
+      // whatever ran past the fold. Scrollbar hidden to match html's.
+      //
+      // Vertical rhythm is keyed to vh rather than fixed: this panel is
+      // always exactly as tall as the viewport, so its spacing is the one
+      // budget that has to flex with it. A 1440×900 desktop gets the roomy
+      // end of every clamp; a 1440×720 laptop compresses instead of
+      // overflowing, and only genuinely short windows fall back to scrolling.
+      //
+      // Width takes a floor, not just a percentage: at 700px — the very
+      // breakpoint this docking starts at — 45% is a 315px column, which no
+      // display headline survives. `max(45%, 26rem)` leaves every wide
+      // layout untouched and only intervenes where the percentage collapses.
+      className={`paper-grain !absolute inset-0 z-20 flex min-w-0 flex-col [justify-content:safe_center] gap-[clamp(1.25rem,2.8vh,2rem)] overflow-y-auto scrollbar-none bg-paper px-6 py-[clamp(2rem,5vh,3rem)] text-ink transition-[opacity,box-shadow] split:right-0 split:left-auto split:w-[max(45%,26rem)] split:border-l split:border-ink/10 split:px-[clamp(1.75rem,3.2vw,3.5rem)] split:transition-[box-shadow] ${
         open ? "" : "pointer-events-none"
       } ${
         entered
@@ -369,7 +380,7 @@ export function Nav({
       </button>
 
       <div>
-        <div className="mb-4 flex items-center gap-4">
+        <div className="mb-[clamp(0.5rem,1.4vh,1rem)] flex items-center gap-4">
           <span className="flex items-center gap-2 font-hud text-hud font-medium uppercase tracking-[0.08em] text-orange-deep">
             <span
               className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange"
@@ -381,28 +392,54 @@ export function Nav({
               sequential
               useOriginalCharsOnly
               revealDirection="start"
-              speed={35}
+              speed={45}
               encryptedClassName="text-ash-deep"
             />
           </span>
         </div>
-        <h1
-          className="font-display italic text-hero text-ink"
-          style={{ fontWeight: 340 }}
+        {/* Negative tracking: Fraunces italic at display size sets loose by
+            default, and the extra letterfit is what makes a long role read as
+            sprawl rather than as one confident line. */}
+        <h1 className="text-ink">
+          <span
+            className="block font-display italic text-hero tracking-[-0.02em]"
+            style={{ fontWeight: 340 }}
+          >
+            {roleWords.map((word, i) => (
+              <span
+                key={word + i}
+                className="inline-block"
+                style={{ marginRight: i < roleWords.length - 1 ? "0.25em" : 0 }}
+              >
+                {word}
+              </span>
+            ))}
+          </span>
+          {/* Signed underneath rather than labelled on top: a name set above a
+              headline is just an eyebrow, but set below it in the HUD voice
+              the rest of the site uses for metadata it reads as a stamp on a
+              print. Kept inside the h1 so the page's one top-level heading
+              names the person as well as the job — with the summary paragraph
+              gone, this is the only place either appears in the hero. */}
+          <span
+            className="mt-[clamp(0.625rem,1.6vh,1rem)] block font-hud text-tag uppercase tracking-[0.12em] text-ink/75 split:text-hud"
+            style={{ fontWeight: 500 }}
+          >
+            {profile.name}
+          </span>
+        </h1>
+        {/* The hook's two beats each get their own line — the turn between
+            them is the point, so the browser doesn't get to break them
+            wherever the measure happens to run out. */}
+        <p
+          className="mt-[clamp(0.875rem,2.2vh,1.5rem)] max-w-md font-display text-body-lg text-ink"
+          style={{ fontWeight: 500 }}
         >
-          {roleWords.map((word, i) => (
-            <span
-              key={word + i}
-              className="inline-block"
-              style={{ marginRight: i < roleWords.length - 1 ? "0.25em" : 0 }}
-            >
-              {word}
+          {heroHook.map((line) => (
+            <span key={line} className="block">
+              {line}
             </span>
           ))}
-        </h1>
-        <p className="mt-6 max-w-md font-body text-body-lg text-ink/70">
-          {profile.name} — takes Figma to shipped, production React, end to end.
-          The result: a frontend hire who ships real features, not prototypes.
         </p>
       </div>
 
@@ -420,9 +457,17 @@ export function Nav({
                 >
                   [{item.frame}]
                 </span>
+                {/* Fluid rather than `text-h3 lg:text-h2`. That step keyed off
+                    the viewport, but the label lives in a 45vw column — so at
+                    a 1024px window the panel is only ~460px wide and the
+                    labels jumped to 2.5rem anyway, which is where the crowding
+                    was worst. Scaling on vw tracks the panel that actually
+                    holds them, and the wider gap it opens under the 4.4vw
+                    headline reads as hierarchy instead of two competing
+                    display sizes. */}
                 <span className="inline-block overflow-hidden">
                   <span
-                    className={`nav-item-label inline-block font-display text-h3 tracking-tight transition-colors duration-300 ease-out group-hover:text-orange-deep group-focus-visible:text-orange-deep lg:text-h2 ${
+                    className={`nav-item-label inline-block font-display text-[clamp(1.5rem,2.2vw,2.25rem)] leading-[1.08] tracking-tight transition-colors duration-300 ease-out group-hover:text-orange-deep group-focus-visible:text-orange-deep ${
                       dimmed ? "text-ash-deep" : "text-ink"
                     }`}
                     style={{ fontWeight: 460 }}
@@ -434,7 +479,7 @@ export function Nav({
             );
             const rowProps = {
               className:
-                "group flex items-center gap-3 py-5 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-deep",
+                "group flex items-center gap-3 py-[clamp(0.75rem,1.7vh,1.25rem)] cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-deep",
               onMouseEnter: () => setHoveredIndex(index),
               onMouseLeave: () => setHoveredIndex(null),
               onFocus: () => setHoveredIndex(index),
@@ -469,94 +514,101 @@ export function Nav({
         </ul>
       </nav>
 
-      <div className="flex flex-wrap gap-4">
-        <LinkButton
-          href="#work"
-          variant="primary"
-          magnetic
-          forceMagnetic
-          onClick={(e) => {
-            e.preventDefault();
-            onCollapse?.();
-            scrollToTarget("#work");
-          }}
-        >
-          View Featured Work
-        </LinkButton>
-        <LinkButton
-          href={profile.resumeUrl}
-          variant="ghost-dark"
-          magnetic
-          forceMagnetic
-          download
-          aria-busy={isDownloading}
-          onClick={() => {
-            setIsDownloading(true);
-            window.setTimeout(
-              () => setIsDownloading(false),
-              DOWNLOAD_FEEDBACK_MS,
-            );
-          }}
-        >
-          <span className="grid">
-            <span
-              aria-hidden={isDownloading}
-              className={`col-start-1 row-start-1 flex items-center gap-2 transition-opacity ${
-                isDownloading ? "opacity-0" : "opacity-100"
-              }`}
-            >
-              <Download className="h-4 w-4" aria-hidden="true" />
-              Download Resume
-            </span>
-            <span
-              aria-hidden={!isDownloading}
-              className={`col-start-1 row-start-1 flex items-center gap-2 transition-opacity ${
-                isDownloading ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <Spinner />
-              Downloading…
-            </span>
-          </span>
-        </LinkButton>
-      </div>
-
-      <div className="flex flex-wrap items-center gap-5">
-        {socials.map((social, i) => (
-          <Fragment key={social.label}>
-            {i > 0 && (
+      {/* Actions and socials are one group, not two peers of the menu above.
+          Binding them under a tighter internal gap is what buys the nav list
+          its separation — with a single uniform gap on the panel, every block
+          sat at the same distance from every other and nothing read as
+          belonging together. */}
+      <div className="flex flex-col gap-[clamp(0.875rem,1.8vh,1.25rem)]">
+        <div className="flex flex-wrap gap-4">
+          <LinkButton
+            href="#work"
+            variant="primary"
+            magnetic
+            forceMagnetic
+            onClick={(e) => {
+              e.preventDefault();
+              onCollapse?.();
+              scrollToTarget("#work");
+            }}
+          >
+            View Featured Work
+          </LinkButton>
+          <LinkButton
+            href={profile.resumeUrl}
+            variant="ghost-dark"
+            magnetic
+            forceMagnetic
+            download
+            aria-busy={isDownloading}
+            onClick={() => {
+              setIsDownloading(true);
+              window.setTimeout(
+                () => setIsDownloading(false),
+                DOWNLOAD_FEEDBACK_MS,
+              );
+            }}
+          >
+            <span className="grid">
               <span
-                className="h-[3px] w-[3px] shrink-0 rounded-full bg-ash"
-                aria-hidden="true"
-              />
-            )}
-            {social.label === "Resources" ? (
-              <Link
-                to={social.href}
-                className="flex items-center gap-1 font-hud text-tag uppercase tracking-[0.08em] text-ash-deep transition-colors hover:text-orange-deep"
+                aria-hidden={isDownloading}
+                className={`col-start-1 row-start-1 flex items-center gap-2 transition-opacity ${
+                  isDownloading ? "opacity-0" : "opacity-100"
+                }`}
               >
-                {social.label}
-                <LinkIcon className="h-3 w-3" aria-hidden="true" />
-              </Link>
-            ) : (
-              <a
-                href={social.href}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1.5 font-hud text-tag uppercase tracking-[0.08em] text-ash-deep transition-colors hover:text-orange-deep"
+                <Download className="h-4 w-4" aria-hidden="true" />
+                Download Resume
+              </span>
+              <span
+                aria-hidden={!isDownloading}
+                className={`col-start-1 row-start-1 flex items-center gap-2 transition-opacity ${
+                  isDownloading ? "opacity-100" : "opacity-0"
+                }`}
               >
-                {social.label === "GitHub" ? (
-                  <Github className="h-3.5 w-3.5" aria-hidden="true" />
-                ) : social.label === "LinkedIn" ? (
-                  <Linkedin className="h-3.5 w-3.5" aria-hidden="true" />
-                ) : (
-                  <Gmail className="h-3.5 w-auto" aria-hidden="true" />
-                )}
-                {social.label}
-              </a>
-            )}
-          </Fragment>
-        ))}
+                <Spinner />
+                Downloading…
+              </span>
+            </span>
+          </LinkButton>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-5">
+          {socials.map((social, i) => (
+            <Fragment key={social.label}>
+              {i > 0 && (
+                <span
+                  className="h-[3px] w-[3px] shrink-0 rounded-full bg-ash"
+                  aria-hidden="true"
+                />
+              )}
+              {social.label === "Resources" ? (
+                <Link
+                  to={social.href}
+                  className="flex items-center gap-1 font-hud text-tag uppercase tracking-[0.08em] text-ash-deep transition-colors hover:text-orange-deep"
+                >
+                  {social.label}
+                  <LinkIcon className="h-3 w-3" aria-hidden="true" />
+                </Link>
+              ) : (
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 font-hud text-tag uppercase tracking-[0.08em] text-ash-deep transition-colors hover:text-orange-deep"
+                >
+                  {social.label === "GitHub" ? (
+                    <Github className="h-3.5 w-3.5" aria-hidden="true" />
+                  ) : social.label === "LinkedIn" ? (
+                    <Linkedin className="h-3.5 w-3.5" aria-hidden="true" />
+                  ) : (
+                    <Gmail className="h-3.5 w-auto" aria-hidden="true" />
+                  )}
+                  {social.label}
+                </a>
+              )}
+            </Fragment>
+          ))}
+        </div>
       </div>
     </div>
   );

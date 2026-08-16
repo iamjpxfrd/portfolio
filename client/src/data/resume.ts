@@ -1,12 +1,15 @@
 export const profile = {
   name: "Darwin Darryl Jean E. Largoza",
-  role: "Frontend / UI-UX Developer",
+  role: "Full Stack Developer & UI/UX Designer",
   location: "Cebu, Philippines",
   email: "darwindarryljean.largoza@gmail.com",
   linkedin: "https://www.linkedin.com/in/ddjl/",
   github: "https://github.com/iamjpxfrd",
   resumeUrl: "/resume.pdf",
-  bio: "4th-year IT student turning Figma files into production React — full-stack across React, Node.js, and Django, AWS-certified, and comfortable owning a project end to end.",
+  // Footer sign-off. Longer and more concrete than the hero's summary — by
+  // the time a visitor reaches the footer they have seen the work, so this
+  // names the credentials rather than making the pitch.
+  bio: "4th year IT student turning Figma files into production software — full stack across React, Node.js, and Django, AWS certified in Cloud Architecting and Cloud Foundations, and comfortable owning a project end to end, solo or on a team.",
 };
 
 // Opens Gmail's web compose directly, prefilled with the recipient — an
@@ -14,6 +17,20 @@ export const profile = {
 // the addressed `view=cm` deep link (not a numbered `/mail/u/0/` inbox URL)
 // so it works regardless of which Google account the visitor has open.
 export const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`;
+
+// The hero's entire pitch. Two beats with the turn between them doing the
+// work, so they are separate strings set on their own lines rather than one
+// wrapped paragraph the browser could break anywhere it liked.
+//
+// A longer supporting paragraph used to follow this and was cut: it restated
+// the hook at four times the length, and in a viewport-height panel that copy
+// was the difference between the menu fitting and the menu scrolling. The
+// same claims survive in `profile.bio`, which the footer sets at the point a
+// visitor has actually seen the work.
+export const heroHook = [
+  "Most designers hand off a Figma file.",
+  "I hand off the finished app.",
+];
 
 export const techStack = [
   {
@@ -60,7 +77,7 @@ export const techStack = [
 ] as const;
 
 export const currentlyExpanding =
-  "Test automation (Playwright) · CI/CD fundamentals · Advanced AWS (Security/DevOps)";
+  "TypeScript · Next.js · Web accessibility (WCAG)";
 
 export const projects = [
   {
@@ -116,7 +133,25 @@ export const education = {
   period: "2022 – Present",
 };
 
+// Reverse-chronological — newest credential first. Kept ordered here rather
+// than sorted at render time: `date` is a display string ("Jul 2026"), and a
+// runtime sort would need a month parser that fails silently the first time
+// one of these is written in another format. Add new entries in position.
 export const certifications = [
+  {
+    name: "IBM — Lifelong Professional Skills",
+    type: "Certificate",
+    date: "Jul 2026",
+    icon: "ibm",
+    url: "https://www.credly.com/badges/b5b5da2d-0ce8-4f17-a336-1182e00b3533/public_url",
+  },
+  {
+    name: "CIT-U OJT Readiness Program",
+    type: "Certificate",
+    date: "Jul 2026",
+    icon: "cit",
+    url: "https://www.credential.net/c394a11d-dae7-4da5-a5ae-7563557daf18#acc.mD0kuQo6",
+  },
   {
     name: "AWS Academy Graduate — Cloud Architecting",
     type: "Training Badge",
@@ -132,18 +167,11 @@ export const certifications = [
     url: "https://www.credly.com/badges/42f391ac-3ece-45d5-ac7d-42169faecb69/public_url",
   },
   {
-    name: "IBM — Lifelong Professional Skills",
+    name: "ServiceNow Academic Program — CIT-U EY6 2025",
     type: "Certificate",
-    date: "Jul 2026",
-    icon: "ibm",
-    url: "https://www.credly.com/badges/b5b5da2d-0ce8-4f17-a336-1182e00b3533/public_url",
-  },
-  {
-    name: "CIT-U OJT Readiness Program",
-    type: "Certificate",
-    date: "Jul 2026",
-    icon: "cit",
-    url: "https://www.credential.net/c394a11d-dae7-4da5-a5ae-7563557daf18#acc.mD0kuQo6",
+    date: "May 2025",
+    icon: "servicenow",
+    url: "https://drive.google.com/file/d/1TmsvQq4S6XjoOSU7ZBRmdKZ-n5Std1Na/view?usp=sharing",
   },
 ] as const;
 

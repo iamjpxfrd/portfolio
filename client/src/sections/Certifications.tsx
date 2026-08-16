@@ -12,6 +12,18 @@ function CredentialIcon({ icon }: { icon: Certification["icon"] }) {
   if (icon === "aws")
     return <Aws className="h-7 w-auto text-ink" aria-hidden="true" />;
   if (icon === "ibm") return <Ibm className="h-6 w-auto" aria-hidden="true" />;
+  // Wide lowercase wordmark (1844×320, ~5.76:1), cropped to the glyphs, so it
+  // is set shorter than the uppercase IBM mark to read at the same optical
+  // size rather than the same measured height.
+  if (icon === "servicenow")
+    return (
+      <ImageWithSkeleton
+        src="/assets/servicenow.png"
+        alt=""
+        width={115}
+        height={20}
+      />
+    );
   return (
     <ImageWithSkeleton
       src="/assets/cit.png"
@@ -23,16 +35,9 @@ function CredentialIcon({ icon }: { icon: Certification["icon"] }) {
   );
 }
 
-function CredentialCard({ cert }: { cert: Certification }) {
-  const ref = useMagnetic<HTMLAnchorElement>(true, CARD_MAGNETIC_OFFSET);
+function CredentialBody({ cert }: { cert: Certification }) {
   return (
-    <a
-      ref={ref}
-      href={cert.url}
-      target="_blank"
-      rel="noreferrer"
-      className="group flex flex-col gap-4 rounded-md border border-ink/15 p-5 transition-colors hover:border-ink/30"
-    >
+    <>
       <div className="flex h-8 items-center">
         <CredentialIcon icon={cert.icon} />
       </div>
@@ -42,12 +47,47 @@ function CredentialCard({ cert }: { cert: Certification }) {
           style={{ fontWeight: 580 }}
         >
           {cert.name}
-          <ArrowUpRight className="h-3 w-3 shrink-0" aria-hidden="true" />
+          {cert.url && (
+            <ArrowUpRight className="h-3 w-3 shrink-0" aria-hidden="true" />
+          )}
         </p>
         <p className="font-hud text-tag uppercase tracking-[0.08em] text-ash-deep">
           {cert.type} · {cert.date}
         </p>
       </div>
+    </>
+  );
+}
+
+// `group` is deliberately not in here — it drives the name's hover underline,
+// which would be a lie on the unlinked variant.
+const CARD_CLASS =
+  "flex flex-col gap-4 rounded-md border border-ink/15 p-5 transition-colors";
+
+// A credential without a `url` is still a real credential — it just has
+// nowhere to point yet. Rendering it as a plain card keeps it in the grid
+// without an anchor that goes nowhere, and it needs no magnetic pull or
+// hover-border either, since neither would lead anywhere.
+function CredentialCard({ cert }: { cert: Certification }) {
+  const ref = useMagnetic<HTMLAnchorElement>(true, CARD_MAGNETIC_OFFSET);
+
+  if (!cert.url) {
+    return (
+      <div className={CARD_CLASS}>
+        <CredentialBody cert={cert} />
+      </div>
+    );
+  }
+
+  return (
+    <a
+      ref={ref}
+      href={cert.url}
+      target="_blank"
+      rel="noreferrer"
+      className={`${CARD_CLASS} group hover:border-ink/30`}
+    >
+      <CredentialBody cert={cert} />
     </a>
   );
 }
