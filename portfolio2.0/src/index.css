@@ -1,0 +1,471 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+.theme-dark {
+  --wallpaper-image: url("/wallpapers/storm.jpg");
+  --wallpaper-scrim: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65));
+  --wall-b: oklch(4% 0 0);
+  --panel: oklch(0% 0 0 / 0.55);
+  --term: oklch(8% 0 0 / 0.62);
+  --term-dim: oklch(5% 0 0 / 0.62);
+  --fg: oklch(97% 0 0);
+  --fg-muted: oklch(72% 0 0);
+  --fg-dim: oklch(58% 0 0);
+  --line: oklch(95% 0 0 / 0.2);
+}
+
+.theme-light {
+  --wallpaper-image: url("/wallpapers/rocket-launch.jpg");
+  --wallpaper-scrim: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.4));
+  --wall-b: oklch(70% 0 0);
+  --panel: oklch(100% 0 0 / 0.5);
+  --term: oklch(98% 0 0 / 0.4);
+  --term-dim: oklch(93% 0 0 / 0.4);
+  --fg: oklch(9% 0 0);
+  --fg-muted: oklch(38% 0 0);
+  --fg-dim: oklch(55% 0 0);
+  --line: oklch(9% 0 0 / 0.14);
+}
+
+.stage {
+  position: relative;
+  height: 100vh;
+  min-height: 580px;
+  width: 100%;
+  overflow: hidden;
+  font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  color: var(--fg);
+}
+
+/* ---- wallpaper ---- */
+.wallpaper {
+  position: absolute;
+  inset: 0;
+  background-color: var(--wall-b);
+  background-image: var(--wallpaper-scrim), var(--wallpaper-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-color 0.3s ease;
+}
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(oklch(100% 0 0 / 0.05) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ---- top panel ---- */
+.panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  font-size: 11px;
+  color: var(--fg-muted);
+}
+.panel-left,
+.panel-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.grid-icon {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  width: 12px;
+  height: 12px;
+}
+.grid-icon span {
+  width: 2.5px;
+  height: 2.5px;
+  background: var(--fg-muted);
+  border-radius: 50%;
+}
+.pager {
+  display: flex;
+  gap: 4px;
+}
+.pager span {
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--fg-muted);
+}
+.pager span.on {
+  background: var(--fg-muted);
+}
+.panel-clock {
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+.tray-chip {
+  border: 1px solid var(--line);
+  padding: 1px 6px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+.battery {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.battery-body {
+  width: 18px;
+  height: 9px;
+  border: 1px solid var(--fg-muted);
+  position: relative;
+}
+.battery-body::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 2px;
+  width: 2px;
+  height: 3px;
+  background: var(--fg-muted);
+}
+.battery-fill {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  bottom: 1px;
+  width: 78%;
+  background: var(--fg-muted);
+}
+.toggle-tray {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.switch {
+  position: relative;
+  width: 26px;
+  height: 14px;
+  border: 1px solid var(--fg-muted);
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.switch-dot {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fg-muted);
+  transition: transform 0.25s ease;
+}
+.switch.on .switch-dot {
+  transform: translateX(12px);
+  background: var(--fg);
+}
+
+/* ---- big clock widget ---- */
+.clock-widget {
+  position: absolute;
+  z-index: 10;
+  left: 6%;
+  top: 11%;
+  text-align: left;
+}
+.clock-time {
+  font-size: clamp(46px, 6.4vw, 78px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.clock-date {
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* ---- dockview terminal ---- */
+/* The Dock component (components/Dock/Dock.tsx) carries its own CSS. */
+.terminal-dockview {
+  position: absolute;
+  /* top: clears the panel, so a dragged floating window (bounded to this box
+     via floatingGroupBounds) never slides under it. Bottom stays near the
+     viewport edge on purpose — the window is allowed to pass behind the dock
+     (dock has the higher z-index, so it still renders on top). */
+  inset: 30px 0 8px 0;
+  z-index: 20;
+  pointer-events: none;
+}
+.terminal-dockview .dv-resize-container {
+  pointer-events: auto;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+/* The self-drop preview (dockview shows a "split against itself" overlay while
+   shift-dragging the lone floating window, since it's the only possible target)
+   always renders nested inside the floating window's own box. The real
+   whole-desktop edge-tiling overlay renders at the dockview root instead, so
+   hiding anything drop-related nested in here only removes the confusing one. */
+.terminal-dockview .dv-resize-container .dv-drop-target-container,
+.terminal-dockview .dv-resize-container .dv-dnd-compass {
+  display: none !important;
+}
+.terminal-dockview.dockview-theme-abyss {
+  --dv-group-view-background-color: var(--term);
+  --dv-tabs-and-actions-container-background-color: var(--term-dim);
+  --dv-tabs-and-actions-container-font-size: 12px;
+  --dv-tabs-and-actions-container-height: 34px;
+  --dv-activegroup-visiblepanel-tab-background-color: var(--term);
+  --dv-activegroup-visiblepanel-tab-color: var(--fg);
+  --dv-activegroup-hiddenpanel-tab-background-color: transparent;
+  --dv-activegroup-hiddenpanel-tab-color: var(--fg-muted);
+  --dv-inactivegroup-visiblepanel-tab-background-color: var(--term);
+  --dv-inactivegroup-visiblepanel-tab-color: var(--fg-muted);
+  --dv-inactivegroup-hiddenpanel-tab-background-color: transparent;
+  --dv-inactivegroup-hiddenpanel-tab-color: var(--fg-dim);
+  --dv-tab-divider-color: var(--line);
+  --dv-tab-border-radius: 0px;
+  --dv-border-radius: 0px;
+  --dv-separator-border: 1px solid var(--line);
+  --dv-floating-border: 1px solid var(--line);
+  --dv-floating-box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.5),
+    0 6px 20px rgba(0, 0, 0, 0.35);
+  --dv-icon-hover-background-color: var(--line);
+  --dv-drag-over-background-color: var(--line);
+  --dv-drag-over-border-color: var(--fg-muted);
+  --dv-active-sash-color: var(--fg-muted);
+  --dv-sash-color: transparent;
+  /* redock-to-tile preview (shift+drag on desktop, long-press on touch) */
+  --dv-edge-dock-indicator-color: var(--fg);
+  --dv-dnd-compass-color: var(--fg-muted);
+  --dv-dnd-compass-cell-color: var(--line);
+  --dv-dnd-compass-edge-cell-color: var(--line);
+  --dv-dnd-compass-active-cell-color: var(--fg-muted);
+}
+
+/* ---- terminal header: window controls at one corner, logo at the other ---- */
+.terminal-header-prefix {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
+  border-right: 1px solid var(--line);
+}
+.terminal-header-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 12px;
+  color: var(--fg-muted);
+  border-left: 1px solid var(--line);
+}
+
+/* ---- window controls (minimize / maximize / close) ---- */
+.win-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.win-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: none;
+  cursor: pointer;
+  color: var(--fg-muted);
+}
+.win-btn:hover {
+  background: var(--line);
+  color: var(--fg);
+}
+.win-btn-close:hover {
+  background: var(--fg);
+  color: var(--term);
+}
+.win-glyph {
+  display: block;
+  position: relative;
+  width: 8px;
+  height: 8px;
+}
+.win-glyph-min::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+}
+.win-glyph-max {
+  border: 1px solid currentColor;
+  width: 7px;
+  height: 7px;
+}
+.win-glyph-close::before,
+.win-glyph-close::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+}
+.win-glyph-close::before {
+  transform: rotate(45deg);
+}
+.win-glyph-close::after {
+  transform: rotate(-45deg);
+}
+
+.pane {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 20px 22px;
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+.prompt {
+  color: var(--fg-muted);
+}
+.cursor {
+  display: inline-block;
+  width: 7px;
+  height: 13px;
+  background: var(--fg);
+  vertical-align: middle;
+  margin-left: 3px;
+  animation: blink 1s steps(1, end) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.about-block {
+  margin-bottom: 16px;
+}
+.about-copy,
+.about-stack {
+  max-width: 60ch;
+}
+.about-stack {
+  color: var(--fg-muted);
+}
+
+.ls-row {
+  display: grid;
+  grid-template-columns: 84px 44px 78px 118px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.ls-row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.ls-row:hover .ls-name {
+  color: var(--fg-muted);
+}
+.ls-perm,
+.ls-owner,
+.ls-date {
+  color: var(--fg-muted);
+}
+.ls-name {
+  font-weight: 600;
+}
+.ls-desc {
+  color: var(--fg-muted);
+}
+
+.contrib-scroll {
+  overflow-x: auto;
+}
+.contrib-scroll :is(text) {
+  font-family: inherit !important;
+}
+
+.contact-row {
+  display: flex;
+  gap: 16px;
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.contact-row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.contact-row:hover .contact-value {
+  color: var(--fg-muted);
+}
+.contact-key {
+  width: 88px;
+  flex-shrink: 0;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 10px;
+}
+.contact-value {
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .clock-widget {
+    display: none;
+  }
+  .terminal {
+    right: 4%;
+    left: 4%;
+    width: auto;
+    top: 44px;
+    height: calc(100vh - 100px);
+  }
+  .panel-left .pager,
+  .panel-left .grid-icon {
+    display: none;
+  }
+  .dock-item.hide-sm {
+    display: none;
+  }
+}
