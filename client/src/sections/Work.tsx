@@ -1,6 +1,7 @@
 import { projects } from "../data/resume";
 import { useScrollScaleReveal } from "../hooks/useScrollScaleReveal";
 import { ArrowUpRight } from "../components/icons/ArrowUpRight";
+import { Figma } from "../components/icons/TechIcons";
 
 export function Work() {
   const listRef = useScrollScaleReveal<HTMLDivElement>("article");
@@ -58,7 +59,7 @@ export function Work() {
               </div>
             </div>
 
-            <div className="shrink-0">
+            <div className="flex shrink-0 flex-col items-start gap-3">
               <a
                 href={project.url}
                 target="_blank"
@@ -68,6 +69,25 @@ export function Work() {
                 View
                 <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
               </a>
+              {project.figmaUrl ? (
+                <a
+                  href={project.figmaUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 font-hud text-tag uppercase tracking-[0.08em] text-ink transition-colors hover:text-orange-deep"
+                >
+                  <Figma className="h-3 w-3" aria-hidden="true" />
+                  Figma
+                </a>
+              ) : (
+                <span
+                  aria-disabled="true"
+                  className="flex cursor-not-allowed items-center gap-1.5 font-hud text-tag uppercase tracking-[0.08em] text-ink/30"
+                >
+                  <Figma className="h-3 w-3 grayscale" aria-hidden="true" />
+                  Figma
+                </span>
+              )}
             </div>
           </article>
         ))}
