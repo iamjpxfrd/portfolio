@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# design-phase scratch/reference mockups, not app code
+design-canvas
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

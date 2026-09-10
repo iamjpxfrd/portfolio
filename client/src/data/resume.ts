@@ -90,6 +90,8 @@ export const projects = [
     period: "Jan 2025 – Dec 2025",
     meta: "FRONTEND / UI-UX · JAN—DEC 2025",
     url: "https://github.com/piolonrqz/Capstone-ALLY",
+    figmaUrl:
+      "https://www.figma.com/design/zFgB87kgvIO8FgEsifT0bi/ALLY---Capstone?node-id=163-8",
   },
   {
     frame: "02",
@@ -101,6 +103,7 @@ export const projects = [
     period: "Dec 2025",
     meta: "FULL-STACK · TEAM OF 5 · DEC 2025",
     url: "https://github.com/piolonrqz/notes-app",
+    figmaUrl: undefined,
   },
   {
     frame: "03",
@@ -112,6 +115,7 @@ export const projects = [
     period: "May 2025 – Dec 2025",
     meta: "FRONTEND · TEAM OF 5 · MAY—DEC 2025",
     url: "https://github.com/sytrusz/campusxperience",
+    figmaUrl: undefined,
   },
   {
     frame: "04",
@@ -122,6 +126,7 @@ export const projects = [
     stack: ["React", "REST API"],
     period: "Apr 2025 – May 2025",
     meta: "SOLO BUILD · APR—MAY 2025",
+    figmaUrl: undefined,
     url: "https://github.com/Dadaisuk1/CrediGo_IT342",
   },
 ] as const;

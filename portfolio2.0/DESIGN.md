@@ -173,10 +173,10 @@ Reuse `client/src/data/resume.ts` as-is for `profile`, `projects`, `techStack`/c
 
 ## 9. Open items before/while coding
 
-- [ ] Real wallpaper asset (optional) — current one is a generated CSS gradient; swap in a real grayscale image if you have rights to one.
+- [x] Real wallpaper asset — using the two catppuccin-mocha grayscale images from §10 (`storm.jpg` dark, `rocket-launch.jpg` light), self-hosted under `public/wallpapers/`.
 - [x] Real GitHub contributions data source (see §3, `activity` tab) — use `react-github-calendar` (see §10). Replaces the seeded fake pattern.
-- [ ] Confirm target font-loading strategy for JetBrains Mono (self-host vs Google Fonts CDN) for the production site's CSP/perf needs.
-- [ ] Decide `localStorage` key name for theme persistence, and whether to respect `prefers-color-scheme` as the *first-visit* default (design intent above says explicit toggle, no auto-detect, but that's worth confirming).
+- [x] Font-loading strategy for JetBrains Mono — self-hosted via `@fontsource/jetbrains-mono` (bundled with the app, not a CDN fetch), weights 300–800 + 400-italic imported in `main.tsx`.
+- [x] `localStorage` key for theme persistence: `darwin-portfolio-theme`. First-visit default is hardcoded `dark`, no `prefers-color-scheme` auto-detect — matches the explicit-toggle-only design intent (see `useTheme.ts`).
 
 ## 10. Prior art
 
