@@ -90,9 +90,105 @@ export const projects = [
     period: "Jan 2025 – Dec 2025",
     meta: "FRONTEND / UI-UX · JAN—DEC 2025",
     url: "https://github.com/piolonrqz/Capstone-ALLY",
-    figmaUrl:
-      "https://www.figma.com/design/zFgB87kgvIO8FgEsifT0bi/ALLY---Capstone?node-id=163-8",
+    figmaUrl: "https://www.figma.com/design/zFgB87kgvIO8FgEsifT0bi/ALLY---Capstone?node-id=163-8",
   },
+  {
+    frame: "02",
+    name: "RackIn",
+    tagline: "Offline-First Gym Check-In Platform",
+    description:
+      "Independently designed and built RackIn, a staff-operated tablet platform that replaces the front-desk paper logbook at small gyms — working fully offline with no member smartphones or per-member cost. Staff check members in via numpad, QR card, or name search, giving the gym automatic visibility into lapsed members, upcoming expirations, and daily traffic. Owned the project end-to-end as solo full-stack developer and UI/UX designer.",
+    stack: ["React", "Vite", "Spring Boot", "PostgreSQL"],
+    period: "Aug - Present 2026", // fill in your actual dates
+    meta: "FULL-STACK · Aug—Present 2026",
+    url: "https://github.com/iamjpxfrd/rackin",
+    figmaUrl: "https://www.figma.com/design/7XLaUy1ekJ0ifkaIoM1q9T/Agap-Eats?node-id=2002-475",
+  },
+  {
+    frame: "03",
+    name: "Communect",
+    tagline: "Barangay Community App",
+    description:
+      "Collaborated with a group of friends to design a community app for processing barangay request papers and appointments online, built from scratch as a team. Contributed as UX/UI designer across the product.",
+    stack: ["Figma", "UX/UI Design"],
+    period: "MAY 2025", // fill in your actual dates
+    meta: "TEAM PROJECT · UX/UI · MAY 2025",
+    figmaUrl: "https://www.figma.com/design/7Ea0jiaHDyttc6uYgjvAzE/FIGMA-PROJECTS?node-id=0-1&t=PN3AAUNZeA5xtEO2-1",
+    url: "https://github.com/jeecoo/Communnect",
+  },
+  {
+    frame: "04",
+    name: "AgapEats",
+    tagline: "Course Project — Online Ordering Prototype",
+    description:
+      "Designed a prototype online ordering app for Cebu Institute of Technology – University as part of a course subject, showcasing the intended look and flow of the product.",
+    stack: ["Figma", "Prototyping"],
+    period: "TBD", // fill in your actual dates
+    meta: "COURSE PROJECT · PROTOTYPE · TBD",
+    figmaUrl: "https://www.figma.com/design/7XLaUy1ekJ0ifkaIoM1q9T/Agap-Eats?node-id=0-1",
+    url: undefined,
+  },
+  {
+    frame: "05",
+    name: "Sol Centre",
+    tagline: "Startup Prototype",
+    description:
+      "Contributed to the UI/UX of an early-stage startup prototype, designing the checkout flow with an integrated map view and correcting inconsistencies across other sections of the product.",
+    stack: ["Figma", "UI/UX Design"],
+    period: "Dec 2025", // fill in your actual dates
+    meta: "UI/UX CONTRIBUTOR · DEC 2025",
+    figmaUrl: "https://www.figma.com/design/SispedEUQZO5CjtpwmFFGa/New-demo?node-id=0-1&p=f&t=hxXKrWKCUqrNE8Ad-0",
+    url: undefined,
+  },
+  {
+    frame: "06",
+    name: "CampusXperience",
+    tagline: "Campus Event Platform",
+    description:
+      "Built the complete frontend, and contributed as part of a 5-person team to a full-stack web app for campus event discovery, reservation, ticketing, and reminders.",
+    stack: ["React", "Vite", "Spring Boot", "Java"],
+    period: "May 2025 – Dec 2025",
+    meta: "FRONTEND / UI-UX · MAY—DEC 2025",
+    url: "https://github.com/sytrusz/campusxperience",
+    figmaUrl: "https://www.figma.com/design/XmXdiKxDuvf7WZHzCbhH8U/CampusXperience?node-id=0-1&t=PcIlQUbThkbWNmm4-1",
+  },
+  {
+    frame: "07",
+    name: "CrediGo",
+    tagline: "System Integration Project",
+    description:
+      "Independently designed and built the entire web app — frontend UI and backend API integration — for a 3-person System Integration and Architecture course project, owning full-stack development end-to-end from planning through delivery.",
+    stack: ["React", "REST API"],
+    period: "Apr 2025 – May 2025",
+    meta: "SOLO BUILD · APR—MAY 2025",
+    figmaUrl: "https://www.figma.com/design/nlGKqwtZBEyUyPYoN3uaKw/CrediGo?node-id=110-73&t=TAzC8NhQWgS7O8YE-1",
+    url: "https://github.com/Dadaisuk1/CrediGo_IT342",
+  },
+  {
+    frame: "08",
+    name: "Study Space",
+    tagline: "UI Design — Login, Signup & Layout Revisions",
+    description:
+      "Contributed as UI designer on a study-space appointment app, revising the login and signup flows and refining layout details across the design. Each screen was built with its own layout guide to keep the system consistent and traceable.",
+    stack: ["Figma", "UI Design"],
+    period: "Apr 2025", // fill in your actual dates
+    meta: "UI CONTRIBUTOR · APR 2025",
+    figmaUrl: "https://www.figma.com/design/UzWxHlyvLYQ9w2bG8DFiVg/Study-Space?node-id=50-100",
+    url: "https://github.com/piolonrqz/IT342G6-StudySpace",
+  },
+  {
+    frame: "09",
+    name: "Playground",
+    tagline: "Design Playground — Side Projects & Prototypes",
+    description:
+      "A running collection of personal side projects and design prototypes built across four years of study, spanning early experiments through more recent, refined work.",
+    stack: ["Figma", "UI/UX Design"],
+    period: "TBD", // fill in your actual dates
+    meta: "PERSONAL ARCHIVE · 1ST–4TH YR",
+    figmaUrl: "https://www.figma.com/design/tPhYXtJTEMZgjQdOj5gJuo/Projects?node-id=577-2744&t=8HvmYBACxbyxNT5E-1",
+    url: undefined,
+  },
+  /*
   {
     frame: "02",
     name: "Notes App",
@@ -105,30 +201,7 @@ export const projects = [
     url: "https://github.com/piolonrqz/notes-app",
     figmaUrl: undefined,
   },
-  {
-    frame: "03",
-    name: "CampusXperience",
-    tagline: "Campus Event Platform",
-    description:
-      "Built the complete frontend, and contributed as part of a 5-person team to a full-stack web app for campus event discovery, reservation, ticketing, and reminders.",
-    stack: ["React", "Vite", "Spring Boot", "Java"],
-    period: "May 2025 – Dec 2025",
-    meta: "FRONTEND · TEAM OF 5 · MAY—DEC 2025",
-    url: "https://github.com/sytrusz/campusxperience",
-    figmaUrl: undefined,
-  },
-  {
-    frame: "04",
-    name: "CrediGo",
-    tagline: "System Integration Project",
-    description:
-      "Independently designed and built the entire web app — frontend UI and backend API integration — for a 3-person System Integration and Architecture course project, owning full-stack development end-to-end from planning through delivery.",
-    stack: ["React", "REST API"],
-    period: "Apr 2025 – May 2025",
-    meta: "SOLO BUILD · APR—MAY 2025",
-    figmaUrl: undefined,
-    url: "https://github.com/Dadaisuk1/CrediGo_IT342",
-  },
+  */
 ] as const;
 
 export const education = {

@@ -60,15 +60,17 @@ export function Work() {
             </div>
 
             <div className="flex shrink-0 flex-col items-start gap-3">
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 font-hud text-tag uppercase tracking-[0.08em] text-ink transition-colors hover:text-orange-deep"
-              >
-                View
-                <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
-              </a>
+              {project.url && (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1 font-hud text-tag uppercase tracking-[0.08em] text-ink transition-colors hover:text-orange-deep"
+                >
+                  View
+                  <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                </a>
+              )}
               {project.figmaUrl ? (
                 <a
                   href={project.figmaUrl}
