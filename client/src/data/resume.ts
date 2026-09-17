@@ -77,7 +77,7 @@ export const techStack = [
 ] as const;
 
 export const currentlyExpanding =
-  "TypeScript · Next.js · Web accessibility (WCAG)";
+  "TypeScript · Next.js · React Native Expo (Mobile Development) · Web accessibility (WCAG)";
 
 export const projects = [
   {
