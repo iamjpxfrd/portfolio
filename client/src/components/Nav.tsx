@@ -387,7 +387,7 @@ export function Nav({
               aria-hidden="true"
             />
             <DecryptedText
-              text="Open to internships"
+              text="UI/UX Intern @ Symph · Open to Full-Time Roles"
               animateOn="view"
               sequential
               useOriginalCharsOnly
