@@ -102,7 +102,7 @@ export function Certifications() {
       <div className="mx-auto flex max-w-[1400px] flex-col gap-7">
         <div className="flex flex-col gap-2 border-b border-ink/12 pb-7">
           <span className="font-hud text-tag uppercase tracking-[0.08em] text-orange">
-            [04] Certifications &amp; Awards
+            [05] Certifications &amp; Awards
           </span>
           <h2
             className="font-display text-h2 text-ink"

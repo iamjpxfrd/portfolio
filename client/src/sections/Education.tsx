@@ -15,7 +15,7 @@ export function Education() {
         <div className="flex flex-col items-start justify-between gap-4 border-b border-ash/20 pb-7 sm:flex-row sm:items-baseline">
           <div className="flex flex-col gap-2">
             <span className="font-hud text-tag uppercase tracking-[0.08em] text-orange">
-              [03] Education
+              [04] Education
             </span>
             <h2
               className="font-display text-h2 text-paper"

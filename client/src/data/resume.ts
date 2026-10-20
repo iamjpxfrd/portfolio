@@ -225,6 +225,32 @@ export const projects = [
   */
 ] as const;
 
+// Reverse-chronological — newest role first, same reasoning as
+// `certifications` below. `current` drives the "Now" marker rather than
+// parsing "Present" out of the period string.
+export const experience = [
+  {
+    company: "Novella Social Media",
+    role: "Graphic Designer",
+    period: "Oct 2026 – Present",
+    start: "Oct 14, 2026",
+    current: true,
+    description:
+        "Designing social media graphics and brand assets — posts, banners, and campaign visuals built to stay consistent across platforms and ready for production.",
+    tags: ["Graphic Design", "Social Media", "Branding"],
+  },
+  {
+    company: "Symph, Inc.",
+    role: "UI/UX Design Intern",
+    period: "Oct 2026 – Present",
+    start: "Oct 4, 2026",
+    current: true,
+    description:
+        "Working with Symph's product team on user interface and experience design — researching flows, building wireframes and high-fidelity screens in Figma, and preparing designs for developer handoff.",
+    tags: ["UI/UX Design", "Figma", "Prototyping"],
+  },
+] as const;
+
 export const education = {
   degree: "Bachelor of Science in Information Technology",
   school: "Cebu Institute of Technology – University",
