@@ -4,6 +4,7 @@ import { PhotoPanel } from "../components/PhotoPanel";
 import { Nav } from "../components/Nav";
 import { BackToTop } from "../components/BackToTop";
 import { ContactModal } from "../components/ContactModal";
+import { Experience } from "../sections/Experience";
 import { Work } from "../sections/Work";
 import { Skills } from "../sections/Skills";
 import { Education } from "../sections/Education";
@@ -68,6 +69,7 @@ export function HomePage({ loading }: { loading: boolean }) {
         </section>
 
         <main>
+          <Experience />
           <Work />
           <Skills />
           <Education />

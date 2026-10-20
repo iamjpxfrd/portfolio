@@ -45,10 +45,11 @@ const SLIDE_EASE = "power3.out";
 const DESKTOP_QUERY = "(min-width: 700px)";
 
 const items = [
-  { frame: "01", label: "Featured Work", href: "#work" },
-  { frame: "02", label: "Tech Stack", href: "#skills" },
-  { frame: "03", label: "Education", href: "#education" },
-  { frame: "04", label: "Credentials", href: "#certifications" },
+  { frame: "01", label: "Experience", href: "#experience" },
+  { frame: "02", label: "Featured Work", href: "#work" },
+  { frame: "03", label: "Tech Stack", href: "#skills" },
+  { frame: "04", label: "Education", href: "#education" },
+  { frame: "05", label: "Credentials", href: "#certifications" },
 ] as const;
 
 const socials = [
@@ -387,7 +388,7 @@ export function Nav({
               aria-hidden="true"
             />
             <DecryptedText
-              text="UI/UX Intern @ Symph · Open to Full-Time Roles"
+              text="UI/UX Intern @ Symph · Graphic Designer @ Novella"
               animateOn="view"
               sequential
               useOriginalCharsOnly
